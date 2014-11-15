@@ -24,33 +24,32 @@ static void draw_line_clock(char *buff) {
 }
 
 int main(void) {
-	char buff[75], c;
-	int ret;
+	char buff[75];
+	int ret, q=1;
 	struct tb_event ev;
 	ret = tb_init();
 	if(ret){
 		fprintf(stderr, "tb_init() failed with error code %d\n", ret);
 		return 1;
 	}
-	while(1) {
+	while(q) {
 		tb_peek_event(&ev, 1);
 		tb_clear();
 		switch(ev.type) {
 		case TB_EVENT_KEY:
 			switch(ev.key) {
 			case TB_KEY_ESC:
-				goto done;
+				q = 0;
 				break;
 			}
 		default:
 			get_current_time(buff);
-			draw_clock(buff);
+			draw_line_clock(buff);
 			tb_present();
 			sleep(1);
 			break;
 		}
 	}
-done:
 	tb_shutdown();
 	return 0;
 }
