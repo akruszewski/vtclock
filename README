@@ -1,1 +1,31 @@
-Soon
+vtclock - virtual terminal clock
+--------------------------------
+vtclock is a toy clock for terminal based on termbox library [0]
+
+
+Requirements
+------------
+In order to build vtclock you need the termbox library
+
+
+Installation
+------------
+Edit config.mk to match your local setup (vtclock is installed into
+the /usr/local namespace by default).
+
+Afterwards enter the following command to build and install vtclock
+(if necessary as root):
+
+    make clean install
+
+
+Running vtclock
+---------------
+To run vtclock use command:
+
+    vtclock
+
+
+Links
+-----
+[0] https://github.com/nsf/termbox
