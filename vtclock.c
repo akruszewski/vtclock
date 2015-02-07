@@ -7,7 +7,7 @@ static
 int get_current_time(char *buff) {
 	time_t current_time = time(NULL);
 
-	if(strftime(buff, 10, "%H:%M:%S", localtime(&current_time)))
+	if(strftime(buff, 8, "%H:%M:%S", localtime(&current_time)))
 		return 0;
 	else
 		return 1;
