@@ -18,7 +18,11 @@ options:
 	@echo CC $<
 	@${CC} -c ${CFLAGS} $<
 
-${OBJ}: config.mk
+config.h:
+		@echo creating $@ from config.def.h
+		@cp config.def.h $@
+
+${OBJ}: config.mk config.h
 
 vtclock: ${OBJ}
 	@echo CC -o $@
@@ -42,6 +46,10 @@ install: all
 	@cp -f vtclock ${DESTDIR}${PREFIX}/bin
 	@chmod 755 ${DESTDIR}${PREFIX}/bin/vtclock
 	@chmod u+s ${DESTDIR}${PREFIX}/bin/vtclock
+	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man1
+	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
+	@sed "s/VERSION/${VERSION}/g" < vtclock.1 > ${DESTDIR}${MANPREFIX}/man1/vtclock.1
+	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/vtclock.1
 
 uninstall:
 	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
