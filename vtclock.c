@@ -23,7 +23,7 @@ void draw_line_clock(char *buff, int fg, int bg) {
 	tb_clear();
 	x = (tb_width()/2)-5;
 	y = tb_height()/2;
-	for(i=0;i<10;i++){
+	for(i=0;i<9;i++){
 		tb_change_cell(x + i, y, buff[i], fg, bg);
 	}
 	
